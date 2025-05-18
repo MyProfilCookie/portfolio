@@ -1,3 +1,4 @@
+"use client"
 import { motion } from 'framer-motion';
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
@@ -45,7 +46,7 @@ export default function SuccessPage() {
           transition={{ delay: 0.5 }}
           className="flex justify-center mb-8"
         >
-          <motion.div 
+          <motion.div
             className="relative"
             whileHover={{ scale: 1.05 }}
             animate={{
