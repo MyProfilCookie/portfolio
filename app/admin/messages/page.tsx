@@ -24,29 +24,26 @@ export default function MessagesPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [processing, setProcessing] = useState<string | null>(null);
-
-  // Déclarez fetchMessages avec useCallback pour une dépendance stable
-  const fetchMessages = async () => {
-    try {
-      console.log("Fetching messages...");
-      const response = await fetch(`/api/contact?page=${page}&limit=10`);
-      console.log("Response status:", response.status);
-      const data = await response.json();
-      console.log("Received data:", data);
-      setMessages(data.messages);
-      setTotalPages(data.pagination.totalPages);
-    } catch (error) {
-      console.error("Erreur détaillée lors de la récupération des messages:", error);
-      toast.error("Erreur lors de la récupération des messages");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
-    console.log("useEffect triggered, page:", page);
+    const fetchMessages = async () => {
+      try {
+        console.log("Fetching messages...");
+        const response = await fetch(`/api/contact?page=${page}&limit=10`);
+        console.log("Response status:", response.status);
+        const data = await response.json();
+        console.log("Received data:", data);
+        setMessages(data.messages);
+        setTotalPages(data.pagination.totalPages);
+      } catch (error) {
+        console.error("Erreur détaillée lors de la récupération des messages:", error);
+        toast.error("Erreur lors de la récupération des messages");
+      } finally {
+        setLoading(false);
+      }
+    };
     fetchMessages();
-  }, [page]); // Dépendance sur 'page' uniquement
+  }, []); // Pas besoin de dépendance si la fonction est dans le hook
 
   const toggleReadStatus = async (id: string) => {
     try {
@@ -126,8 +123,8 @@ export default function MessagesPage() {
               </CardTitle>
               <div className="flex items-center gap-2">
                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${message.read
-                    ? "bg-gray-100 text-gray-800"
-                    : "bg-yellow-100 text-yellow-800"
+                  ? "bg-gray-100 text-gray-800"
+                  : "bg-yellow-100 text-yellow-800"
                   }`}>
                   {message.read ? "Lu" : "Non lu"}
                 </span>
