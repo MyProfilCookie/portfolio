@@ -1,5 +1,7 @@
+'use client' // ← OBLIGATOIRE pour utiliser useSearchParams()
+
 import { Metadata } from 'next'
-import { useSearchParams } from 'next/navigation' // Ajout du hook
+import { useSearchParams } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Vérifiez votre email',
@@ -7,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function VerifyPage() {
-  const searchParams = useSearchParams(); // Ajout de cette ligne
+  const searchParams = useSearchParams()
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -27,12 +29,13 @@ export default function VerifyPage() {
               Si vous ne recevez pas l&apos;email dans les prochaines minutes, vérifiez votre dossier spam.
             </p>
             <p className="text-gray-400">Votre compte a été vérifié avec succès. Vous pouvez maintenant vous connecter à l&apos;interface d&apos;administration.</p>
+
             {searchParams?.get('expired') === 'true' && (
               <p className="text-yellow-600 mb-4">
                 The verification link has expired. A new one has been sent to your email.
               </p>
             )}
-            
+
             {searchParams?.get('verified') === 'true' && (
               <p className="text-green-600 mb-4">
                 Your email has been successfully verified! You can now log in.
