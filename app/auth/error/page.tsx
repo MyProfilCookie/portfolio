@@ -30,7 +30,7 @@ export default function AuthError() {
           <div className="flex justify-center">
             <AlertCircle className="h-12 w-12 text-red-500" />
           </div>
-          <CardTitle className="text-2xl font-bold text-center">Erreur d'authentification</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center">Erreur d&apos;authentification</CardTitle>
           <CardDescription className="text-center text-gray-400">
             {getErrorMessage(error)}
           </CardDescription>
@@ -43,8 +43,15 @@ export default function AuthError() {
               </Link>
             </Button>
           </div>
+          <div className="text-red-500 mt-4">
+            {error === "Verification" && (
+              <p>
+                The verification link is invalid or has expired. Please request a new link via email.
+              </p>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>
   )
-} 
+}

@@ -5,6 +5,7 @@ import { Plus, Pencil, Trash } from 'lucide-react'
 import TechnologyForm from './technology-form'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
+import Image from 'next/image';
 
 interface Technology {
   id: string
@@ -115,10 +116,13 @@ export default function TechnologiesPage() {
           <Card key={technology.id} className="border-cyan-500/20 bg-black/30 backdrop-blur-sm group hover:border-cyan-500/40 transition-colors">
             <div className="overflow-hidden">
               <div className="h-36 w-full">
-                <img
+                <Image
                   className="h-full w-full object-cover"
                   src={technology.icon}
-                  alt=""
+                  alt={technology.name}
+                  width={144}
+                  height={144}
+                  priority={true}
                 />
               </div>
               <div className="p-4">
@@ -174,4 +178,4 @@ export default function TechnologiesPage() {
       )}
     </div>
   )
-} 
+}

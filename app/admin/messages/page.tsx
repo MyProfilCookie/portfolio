@@ -25,6 +25,7 @@ export default function MessagesPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [processing, setProcessing] = useState<string | null>(null);
 
+  // Déclarez fetchMessages avec useCallback pour une dépendance stable
   const fetchMessages = async () => {
     try {
       console.log("Fetching messages...");
@@ -45,7 +46,7 @@ export default function MessagesPage() {
   useEffect(() => {
     console.log("useEffect triggered, page:", page);
     fetchMessages();
-  }, [page]);
+  }, [page]); // Dépendance sur 'page' uniquement
 
   const toggleReadStatus = async (id: string) => {
     try {
@@ -64,8 +65,8 @@ export default function MessagesPage() {
       if (response.ok) {
         setMessages((prev) =>
           prev.map((m) =>
-            m.id === id 
-              ? { ...m, read: !m.read } 
+            m.id === id
+              ? { ...m, read: !m.read }
               : m
           )
         );
@@ -115,7 +116,7 @@ export default function MessagesPage() {
   return (
     <div className="p-8">
       <h1 className="text-3xl font-bold mb-8">Messages de contact</h1>
-      
+
       <div className="grid gap-6">
         {messages.map((message) => (
           <Card key={message.id} className={message.read ? "opacity-75" : ""}>
@@ -124,11 +125,10 @@ export default function MessagesPage() {
                 Message de {message.name}
               </CardTitle>
               <div className="flex items-center gap-2">
-                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                  message.read 
-                    ? "bg-gray-100 text-gray-800" 
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${message.read
+                    ? "bg-gray-100 text-gray-800"
                     : "bg-yellow-100 text-yellow-800"
-                }`}>
+                  }`}>
                   {message.read ? "Lu" : "Non lu"}
                 </span>
                 <Button
@@ -196,4 +196,4 @@ export default function MessagesPage() {
       </div>
     </div>
   );
-} 
+}

@@ -21,6 +21,7 @@ export default function TestimonialsPage() {
   const [totalPages, setTotalPages] = useState(1)
   const [processing, setProcessing] = useState<string | null>(null)
 
+  // Déclarez fetchTestimonials une seule fois (en const)
   const fetchTestimonials = async () => {
     try {
       const response = await fetch(`/api/testimonials?page=${page}&limit=10`)
@@ -37,7 +38,7 @@ export default function TestimonialsPage() {
 
   useEffect(() => {
     fetchTestimonials()
-  }, [page])
+  }, [page]) // Dépendance sur 'page' uniquement
 
   const handleApprove = async (id: string) => {
     try {
@@ -308,4 +309,4 @@ export default function TestimonialsPage() {
       </div>
     </div>
   )
-} 
+}

@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { useSearchParams } from 'next/navigation' // Ajout du hook
 
 export const metadata: Metadata = {
   title: 'Vérifiez votre email',
@@ -6,6 +7,8 @@ export const metadata: Metadata = {
 }
 
 export default function VerifyPage() {
+  const searchParams = useSearchParams(); // Ajout de cette ligne
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-xl shadow-lg text-center">
@@ -18,15 +21,26 @@ export default function VerifyPage() {
               Un lien de connexion a été envoyé à votre adresse email.
             </p>
             <p className="text-gray-600">
-              Cliquez sur le lien dans l'email pour vous connecter.
+              Cliquez sur le lien dans l&apos;email pour vous connecter.
             </p>
             <p className="text-sm text-gray-500 mt-4">
-              Si vous ne recevez pas l'email dans les prochaines minutes, vérifiez votre dossier spam.
+              Si vous ne recevez pas l&apos;email dans les prochaines minutes, vérifiez votre dossier spam.
             </p>
             <p className="text-gray-400">Votre compte a été vérifié avec succès. Vous pouvez maintenant vous connecter à l&apos;interface d&apos;administration.</p>
+            {searchParams?.get('expired') === 'true' && (
+              <p className="text-yellow-600 mb-4">
+                The verification link has expired. A new one has been sent to your email.
+              </p>
+            )}
+            
+            {searchParams?.get('verified') === 'true' && (
+              <p className="text-green-600 mb-4">
+                Your email has been successfully verified! You can now log in.
+              </p>
+            )}
           </div>
         </div>
       </div>
     </div>
   )
-} 
+}
