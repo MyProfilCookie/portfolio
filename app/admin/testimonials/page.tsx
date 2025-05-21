@@ -1,8 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 'use client'
 
-import { useState, useEffect } from 'react'
-import { Plus, Pencil, Trash, Star, Check, X, ArrowUp, ArrowDown, Loader2 } from 'lucide-react'
+import { useState, useEffect, useCallback } from 'react'
+import {
+  Plus, Pencil, Trash, Star, Check, X,
+  ArrowUp, ArrowDown, Loader2
+} from 'lucide-react'
 import { Testimonial as PrismaTestimonial } from '@prisma/client'
 import TestimonialForm from '@/components/testimonial-form'
 import { Button } from '@/components/ui/button'
@@ -10,8 +12,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { toast } from 'sonner'
 
 interface TestimonialWithDates extends Omit<PrismaTestimonial, 'createdAt' | 'updatedAt'> {
-  createdAt: string;
-  updatedAt: string;
+  createdAt: string
+  updatedAt: string
 }
 
 export default function TestimonialsPage() {
@@ -21,8 +23,7 @@ export default function TestimonialsPage() {
   const [totalPages, setTotalPages] = useState(1)
   const [processing, setProcessing] = useState<string | null>(null)
 
-  // Déclarez fetchTestimonials une seule fois (en const)
-  const fetchTestimonials = async () => {
+  const fetchTestimonials = useCallback(async () => {
     try {
       const response = await fetch(`/api/testimonials?page=${page}&limit=10`)
       const data = await response.json()
@@ -34,11 +35,11 @@ export default function TestimonialsPage() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [page])
 
   useEffect(() => {
     fetchTestimonials()
-  }, [page]) // Dépendance sur 'page' uniquement
+  }, [fetchTestimonials])
 
   const handleApprove = async (id: string) => {
     try {
@@ -48,26 +49,20 @@ export default function TestimonialsPage() {
 
       const response = await fetch(`/api/testimonials/${id}`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ approved: !testimonial.approved }),
       })
 
       if (response.ok) {
         setTestimonials((prev) =>
-          prev.map((t) =>
-            t.id === id ? { ...t, approved: !t.approved } : t
-          )
+          prev.map((t) => t.id === id ? { ...t, approved: !t.approved } : t)
         )
-        toast.success(
-          `Témoignage ${testimonial.approved ? 'désapprouvé' : 'approuvé'}`
-        )
+        toast.success(`Témoignage ${testimonial.approved ? 'désapprouvé' : 'approuvé'}`)
       } else {
         toast.error('Erreur lors de la mise à jour du statut')
       }
     } catch (error) {
-      console.error('Erreur lors de la mise à jour du statut:', error)
+      console.error(error)
       toast.error('Erreur lors de la mise à jour du statut')
     } finally {
       setProcessing(null)
@@ -82,28 +77,20 @@ export default function TestimonialsPage() {
 
       const response = await fetch(`/api/testimonials/${id}`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ featured: !testimonial.featured }),
       })
 
       if (response.ok) {
         setTestimonials((prev) =>
-          prev.map((t) =>
-            t.id === id ? { ...t, featured: !t.featured } : t
-          )
+          prev.map((t) => t.id === id ? { ...t, featured: !t.featured } : t)
         )
-        toast.success(
-          `Témoignage ${
-            testimonial.featured ? 'retiré des' : 'ajouté aux'
-          } témoignages mis en avant`
-        )
+        toast.success(`Témoignage ${testimonial.featured ? 'retiré des' : 'ajouté aux'} témoignages mis en avant`)
       } else {
         toast.error('Erreur lors de la mise à jour du statut')
       }
     } catch (error) {
-      console.error('Erreur lors de la mise à jour du statut:', error)
+      console.error(error)
       toast.error('Erreur lors de la mise à jour du statut')
     } finally {
       setProcessing(null)
@@ -112,12 +99,9 @@ export default function TestimonialsPage() {
 
   const handleDelete = async (id: string) => {
     if (!confirm('Êtes-vous sûr de vouloir supprimer ce témoignage ?')) return
-
     try {
       setProcessing(id)
-      const response = await fetch(`/api/testimonials/${id}`, {
-        method: 'DELETE',
-      })
+      const response = await fetch(`/api/testimonials/${id}`, { method: 'DELETE' })
 
       if (response.ok) {
         setTestimonials((prev) => prev.filter((t) => t.id !== id))
@@ -126,7 +110,7 @@ export default function TestimonialsPage() {
         toast.error('Erreur lors de la suppression du témoignage')
       }
     } catch (error) {
-      console.error('Erreur lors de la suppression du témoignage:', error)
+      console.error(error)
       toast.error('Erreur lors de la suppression du témoignage')
     } finally {
       setProcessing(null)
@@ -143,19 +127,17 @@ export default function TestimonialsPage() {
 
       const response = await fetch(`/api/testimonials/${id}`, {
         method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ order: newOrder }),
       })
 
       if (response.ok) {
-        await fetchTestimonials() // Recharger tous les témoignages pour avoir le bon ordre
+        await fetchTestimonials()
       } else {
         toast.error('Erreur lors de la réorganisation')
       }
     } catch (error) {
-      console.error('Erreur lors de la réorganisation:', error)
+      console.error(error)
       toast.error('Erreur lors de la réorganisation')
     } finally {
       setProcessing(null)
@@ -176,97 +158,36 @@ export default function TestimonialsPage() {
 
       <div className="grid gap-6">
         {testimonials.map((testimonial) => (
-          <Card
-            key={testimonial.id}
-            className={testimonial.approved ? '' : 'opacity-75'}
-          >
+          <Card key={testimonial.id} className={testimonial.approved ? '' : 'opacity-75'}>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-xl font-medium">
                 Témoignage de {testimonial.name}
               </CardTitle>
               <div className="flex items-center gap-2">
-                {/* Statut d'approbation */}
-                <span
-                  className={`px-2 py-1 rounded-full text-xs font-medium ${
-                    testimonial.approved
-                      ? 'bg-green-100 text-green-800'
-                      : 'bg-yellow-100 text-yellow-800'
-                  }`}
-                >
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${testimonial.approved ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                  }`}>
                   {testimonial.approved ? 'Approuvé' : 'En attente'}
                 </span>
-
-                {/* Note */}
                 <div className="flex gap-1">
                   {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 text-yellow-400 fill-yellow-400"
-                    />
+                    <Star key={i} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                   ))}
                 </div>
-
-                {/* Actions */}
                 <div className="flex items-center gap-1">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleApprove(testimonial.id)}
-                    disabled={processing === testimonial.id}
-                  >
-                    {processing === testimonial.id ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : testimonial.approved ? (
-                      <X className="h-4 w-4" />
-                    ) : (
-                      <Check className="h-4 w-4" />
-                    )}
+                  <Button variant="ghost" size="icon" onClick={() => handleApprove(testimonial.id)} disabled={processing === testimonial.id}>
+                    {processing === testimonial.id ? <Loader2 className="h-4 w-4 animate-spin" /> : testimonial.approved ? <X className="h-4 w-4" /> : <Check className="h-4 w-4" />}
                   </Button>
-
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleFeature(testimonial.id)}
-                    disabled={processing === testimonial.id}
-                    className={testimonial.featured ? 'text-yellow-400' : ''}
-                  >
-                    <Star
-                      className={`h-4 w-4 ${
-                        testimonial.featured ? 'fill-yellow-400' : ''
-                      }`}
-                    />
+                  <Button variant="ghost" size="icon" onClick={() => handleFeature(testimonial.id)} disabled={processing === testimonial.id} className={testimonial.featured ? 'text-yellow-400' : ''}>
+                    <Star className={`h-4 w-4 ${testimonial.featured ? 'fill-yellow-400' : ''}`} />
                   </Button>
-
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleReorder(testimonial.id, 'up')}
-                    disabled={processing === testimonial.id}
-                  >
+                  <Button variant="ghost" size="icon" onClick={() => handleReorder(testimonial.id, 'up')} disabled={processing === testimonial.id}>
                     <ArrowUp className="h-4 w-4" />
                   </Button>
-
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleReorder(testimonial.id, 'down')}
-                    disabled={processing === testimonial.id}
-                  >
+                  <Button variant="ghost" size="icon" onClick={() => handleReorder(testimonial.id, 'down')} disabled={processing === testimonial.id}>
                     <ArrowDown className="h-4 w-4" />
                   </Button>
-
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => handleDelete(testimonial.id)}
-                    disabled={processing === testimonial.id}
-                    className="text-red-400 hover:text-red-600"
-                  >
-                    {processing === testimonial.id ? (
-                      <Loader2 className="h-4 w-4 animate-spin" />
-                    ) : (
-                      <X className="h-4 w-4" />
-                    )}
+                  <Button variant="ghost" size="icon" onClick={() => handleDelete(testimonial.id)} disabled={processing === testimonial.id} className="text-red-400 hover:text-red-600">
+                    {processing === testimonial.id ? <Loader2 className="h-4 w-4 animate-spin" /> : <X className="h-4 w-4" />}
                   </Button>
                 </div>
               </div>
@@ -276,13 +197,9 @@ export default function TestimonialsPage() {
                 <div className="flex justify-between text-sm text-muted-foreground">
                   <span>{testimonial.role}</span>
                   <span>{testimonial.company}</span>
-                  <span>
-                    {new Date(testimonial.createdAt).toLocaleDateString('fr-FR', {
-                      day: 'numeric',
-                      month: 'long',
-                      year: 'numeric',
-                    })}
-                  </span>
+                  <span>{new Date(testimonial.createdAt).toLocaleDateString('fr-FR', {
+                    day: 'numeric', month: 'long', year: 'numeric'
+                  })}</span>
                 </div>
                 <p className="text-sm whitespace-pre-line">{testimonial.message}</p>
               </div>
@@ -292,18 +209,10 @@ export default function TestimonialsPage() {
       </div>
 
       <div className="mt-8 flex justify-center gap-2">
-        <Button
-          variant="outline"
-          onClick={() => setPage((p) => Math.max(1, p - 1))}
-          disabled={page === 1}
-        >
+        <Button variant="outline" onClick={() => setPage((p) => Math.max(1, p - 1))} disabled={page === 1}>
           Précédent
         </Button>
-        <Button
-          variant="outline"
-          onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
-          disabled={page === totalPages}
-        >
+        <Button variant="outline" onClick={() => setPage((p) => Math.min(totalPages, p + 1))} disabled={page === totalPages}>
           Suivant
         </Button>
       </div>
