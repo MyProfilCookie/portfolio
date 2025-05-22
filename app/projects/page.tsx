@@ -97,58 +97,58 @@ export default function ProjectsPage() {
 
   return (
     <main className="min-h-screen bg-black text-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative pt-32">
-        <motion.div 
-          className="text-center mb-20"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative pt-20 sm:pt-32">
+        <motion.div
+          className="text-center mb-12 sm:mb-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="flex justify-center items-center mb-12"
+            className="flex justify-center items-center mb-8 sm:mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
             <div className="relative group">
-              <div className="absolute -inset-8 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-colors duration-300" />
-              <AstronautIcon className="w-32 h-32" page="projects" />
+              <div className="absolute -inset-6 sm:-inset-8 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-colors duration-300" />
+              <AstronautIcon className="w-24 h-24 sm:w-32 sm:h-32" page="projects" />
             </div>
           </motion.div>
-          
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text">
+
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text">
             Mes Projets
           </h1>
-          
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8">
+
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
             Découvrez mes réalisations et explorez mon univers créatif
           </p>
 
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <div className="flex items-center gap-2 text-cyan-400">
-              <Code className="w-8 h-8" />
-              <span className="text-lg font-medium">Développement</span>
+              <Code className="w-6 h-6 sm:w-8 sm:h-8" />
+              <span className="text-base sm:text-lg font-medium">Développement</span>
             </div>
-            
+
             <div className="flex items-center gap-2 text-blue-400">
-              <Rocket className="w-8 h-8" />
-              <span className="text-lg font-medium">Innovation</span>
+              <Rocket className="w-6 h-6 sm:w-8 sm:h-8" />
+              <span className="text-base sm:text-lg font-medium">Innovation</span>
             </div>
-            
+
             <div className="flex items-center gap-2 text-purple-400">
-              <Star className="w-8 h-8" />
-              <span className="text-lg font-medium">Créativité</span>
+              <Star className="w-6 h-6 sm:w-8 sm:h-8" />
+              <span className="text-base sm:text-lg font-medium">Créativité</span>
             </div>
           </div>
         </motion.div>
 
         {isLoading ? (
-          <div className="flex justify-center items-center min-h-[400px]">
-            <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-cyan-500"></div>
+          <div className="flex justify-center items-center min-h-[300px] sm:min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-t-2 border-b-2 border-cyan-500"></div>
           </div>
         ) : (
-          <motion.div 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 px-2 sm:px-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1 }}
@@ -160,6 +160,7 @@ export default function ProjectsPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 + index * 0.1 }}
                 whileHover={{ y: -5 }}
+                className="w-full"
               >
                 <ProjectCard project={project} />
               </motion.div>
