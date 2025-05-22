@@ -212,162 +212,163 @@ export default function TarifsPage() {
 
   return (
     <main className="min-h-screen bg-black text-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative pt-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 relative pt-20 sm:pt-32">
         <motion.div 
-          className="text-center mb-20"
+          className="text-center mb-12 sm:mb-20"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
           <motion.div
-            className="flex justify-center items-center mb-12"
+            className="flex justify-center items-center mb-8 sm:mb-12"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
             <div className="relative group">
-              <div className="absolute -inset-8 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-colors duration-300" />
-              <AstronautIcon className="w-32 h-32" page="pricing" />
+              <div className="absolute -inset-6 sm:-inset-8 bg-cyan-500/20 rounded-full blur-2xl group-hover:bg-cyan-500/30 transition-colors duration-300" />
+              <AstronautIcon className="w-24 h-24 sm:w-32 sm:h-32" page="pricing" />
             </div>
           </motion.div>
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text">
             Solutions Tarifaires
           </h1>
           
-          <p className="text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-8">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 max-w-3xl mx-auto mb-6 sm:mb-8 px-2">
             Des offres adaptées à tous les budgets et besoins
           </p>
 
-          <div className="flex items-center justify-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
             <div className="flex items-center gap-2 text-cyan-400">
-              <CreditCard className="w-8 h-8" />
-              <span className="text-lg font-medium">Paiement sécurisé</span>
+              <CreditCard className="w-6 h-6 sm:w-8 sm:h-8" />
+              <span className="text-base sm:text-lg font-medium">Paiement sécurisé</span>
             </div>
             
             <div className="flex items-center gap-2 text-blue-400">
-              <Shield className="w-8 h-8" />
-              <span className="text-lg font-medium">Garantie satisfait</span>
+              <Shield className="w-6 h-6 sm:w-8 sm:h-8" />
+              <span className="text-base sm:text-lg font-medium">Garantie satisfait</span>
             </div>
             
             <div className="flex items-center gap-2 text-purple-400">
-              <Clock className="w-8 h-8" />
-              <span className="text-lg font-medium">Livraison rapide</span>
+              <Clock className="w-6 h-6 sm:w-8 sm:h-8" />
+              <span className="text-base sm:text-lg font-medium">Livraison rapide</span>
             </div>
           </div>
         </motion.div>
 
-        <div className="mb-20">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-            <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-              <h3 className="text-xl font-semibold mb-4 text-cyan-400">Processus de travail</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
+        <div className="mb-12 sm:mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 mb-12 sm:mb-20">
+            <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-cyan-400">Processus de travail</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-cyan-400/10">
                     <AtSign className="w-4 h-4 text-cyan-400" />
                   </div>
                   <div>
                     <span className="font-medium">Consultation initiale</span>
-                    <p className="text-sm text-gray-400">Discussion approfondie de vos besoins et objectifs</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Discussion approfondie de vos besoins et objectifs</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-cyan-400/10">
                     <Code className="w-4 h-4 text-cyan-400" />
                   </div>
                   <div>
                     <span className="font-medium">Développement</span>
-                    <p className="text-sm text-gray-400">Création de votre site avec des technologies modernes</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Création de votre site avec des technologies modernes</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-cyan-400/10">
                     <Rocket className="w-4 h-4 text-cyan-400" />
                   </div>
                   <div>
                     <span className="font-medium">Déploiement</span>
-                    <p className="text-sm text-gray-400">Mise en ligne et optimisation des performances</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Mise en ligne et optimisation des performances</p>
                   </div>
                 </li>
               </ul>
             </div>
 
-            <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-              <h3 className="text-xl font-semibold mb-4 text-blue-400">Technologies utilisées</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
+            <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-blue-400">Technologies utilisées</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-blue-400/10">
                     <Code className="w-4 h-4 text-blue-400" />
                   </div>
                   <div>
                     <span className="font-medium">Next.js & React</span>
-                    <p className="text-sm text-gray-400">Pour une expérience utilisateur fluide et moderne</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Pour une expérience utilisateur fluide et moderne</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-blue-400/10">
                     <TrendingUp className="w-4 h-4 text-blue-400" />
                   </div>
                   <div>
                     <span className="font-medium">Tailwind CSS</span>
-                    <p className="text-sm text-gray-400">Design responsive et personnalisé</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Design responsive et personnalisé</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-blue-400/10">
                     <Sparkles className="w-4 h-4 text-blue-400" />
                   </div>
                   <div>
                     <span className="font-medium">Animations</span>
-                    <p className="text-sm text-gray-400">Interactions fluides et élégantes</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Interactions fluides et élégantes</p>
                   </div>
                 </li>
               </ul>
             </div>
 
-            <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-              <h3 className="text-xl font-semibold mb-4 text-purple-400">Garanties</h3>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
+            <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+              <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4 text-purple-400">Garanties</h3>
+              <ul className="space-y-3 sm:space-y-4">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-purple-400/10">
                     <Shield className="w-4 h-4 text-purple-400" />
                   </div>
                   <div>
                     <span className="font-medium">Support 6 mois</span>
-                    <p className="text-sm text-gray-400">Assistance technique et maintenance incluses</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Assistance technique et maintenance incluses</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-purple-400/10">
                     <Clock className="w-4 h-4 text-purple-400" />
                   </div>
                   <div>
                     <span className="font-medium">Délais respectés</span>
-                    <p className="text-sm text-gray-400">Livraison dans les temps convenus</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Livraison dans les temps convenus</p>
                   </div>
                 </li>
-                <li className="flex items-start gap-3">
+                <li className="flex items-start gap-2 sm:gap-3">
                   <div className="mt-1 p-1 rounded-full bg-purple-400/10">
                     <CreditCard className="w-4 h-4 text-purple-400" />
                   </div>
                   <div>
                     <span className="font-medium">Paiement sécurisé</span>
-                    <p className="text-sm text-gray-400">Paiement en plusieurs fois possible</p>
+                    <p className="text-xs sm:text-sm text-gray-400">Paiement en plusieurs fois possible</p>
                   </div>
                 </li>
               </ul>
             </div>
-      </div>
+          </div>
       
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8">
             {plans.map((plan, index) => (
               <motion.div
                 key={plan.id}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.1 }}
+                className="w-full"
               >
-        <PricingCard 
+                <PricingCard 
                   title={plan.title}
                   price={plan.price}
                   description={plan.description}
@@ -381,94 +382,94 @@ export default function TarifsPage() {
             ))}
           </div>
 
-          <div className="mt-20 text-center">
-            <h2 className="text-3xl font-bold mb-6">Questions fréquentes</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-                <h3 className="text-xl font-semibold mb-3">Combien de temps pour réaliser mon projet ?</h3>
-                <p className="text-gray-400">Le délai moyen est de 2 à 4 semaines selon la complexité. Un planning détaillé vous sera fourni lors de la consultation initiale.</p>
+          <div className="mt-12 sm:mt-20 text-center">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Questions fréquentes</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 max-w-4xl mx-auto">
+              <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Combien de temps pour réaliser mon projet ?</h3>
+                <p className="text-sm text-gray-400">Le délai moyen est de 2 à 4 semaines selon la complexité. Un planning détaillé vous sera fourni lors de la consultation initiale.</p>
               </div>
-              <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-                <h3 className="text-xl font-semibold mb-3">Comment se déroule le paiement ?</h3>
-                <p className="text-gray-400">Le paiement se fait en plusieurs fois : 30% à la commande, 40% au développement et 30% à la livraison.</p>
+              <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Comment se déroule le paiement ?</h3>
+                <p className="text-sm text-gray-400">Le paiement se fait en plusieurs fois : 30% à la commande, 40% au développement et 30% à la livraison.</p>
               </div>
-              <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-                <h3 className="text-xl font-semibold mb-3">Puis-je modifier mon site après la livraison ?</h3>
-                <p className="text-gray-400">Oui, je vous forme à la gestion du contenu et reste disponible pour les modifications techniques pendant 6 mois.</p>
+              <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Puis-je modifier mon site après la livraison ?</h3>
+                <p className="text-sm text-gray-400">Oui, je vous forme à la gestion du contenu et reste disponible pour les modifications techniques pendant 6 mois.</p>
               </div>
-              <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
-                <h3 className="text-xl font-semibold mb-3">Le référencement est-il inclus ?</h3>
-                <p className="text-gray-400">Oui, tous les sites sont optimisés pour le SEO avec les meilleures pratiques actuelles.</p>
+              <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800">
+                <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Le référencement est-il inclus ?</h3>
+                <p className="text-sm text-gray-400">Oui, tous les sites sont optimisés pour le SEO avec les meilleures pratiques actuelles.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Témoignages clients</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Découvrez ce que mes clients disent de mon travail</p>
+        <div className="mt-12 sm:mt-20">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Témoignages clients</h2>
+            <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto">Découvrez ce que mes clients disent de mon travail</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800 relative">
-              <div className="absolute -top-3 -left-3 text-4xl text-cyan-400">"</div>
-              <p className="text-gray-300 mb-4">Un travail exceptionnel ! Le site est exactement ce que je voulais, moderne et facile à utiliser. Le support est très réactif.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
+            <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800 relative">
+              <div className="absolute -top-3 -left-3 text-3xl sm:text-4xl text-cyan-400">"</div>
+              <p className="text-sm sm:text-base text-gray-300 mb-4">Un travail exceptionnel ! Le site est exactement ce que je voulais, moderne et facile à utiliser. Le support est très réactif.</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-sm sm:text-base">
                   ML
                 </div>
                 <div>
-                  <div className="font-medium">Marie Laurent</div>
-                  <div className="text-sm text-gray-400">Photographe</div>
+                  <div className="font-medium text-sm sm:text-base">Marie Laurent</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Photographe</div>
                 </div>
               </div>
             </div>
             
-            <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800 relative">
-              <div className="absolute -top-3 -left-3 text-4xl text-blue-400">"</div>
-              <p className="text-gray-300 mb-4">Très professionnel et à l'écoute. Le résultat dépasse mes attentes. Je recommande vivement !</p>
+            <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800 relative">
+              <div className="absolute -top-3 -left-3 text-3xl sm:text-4xl text-blue-400">"</div>
+              <p className="text-sm sm:text-base text-gray-300 mb-4">Très professionnel et à l'écoute. Le résultat dépasse mes attentes. Je recommande vivement !</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-sm sm:text-base">
                   TD
                 </div>
                 <div>
-                  <div className="font-medium">Thomas Dubois</div>
-                  <div className="text-sm text-gray-400">Restaurant Le Gourmet</div>
+                  <div className="font-medium text-sm sm:text-base">Thomas Dubois</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Restaurant Le Gourmet</div>
                 </div>
               </div>
             </div>
             
-            <div className="p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800 relative">
-              <div className="absolute -top-3 -left-3 text-4xl text-purple-400">"</div>
-              <p className="text-gray-300 mb-4">Un vrai professionnel qui sait s'adapter aux besoins. Le site est rapide et le design est superbe.</p>
+            <div className="p-4 sm:p-6 rounded-lg bg-gray-900/50 backdrop-blur-sm border border-gray-800 relative">
+              <div className="absolute -top-3 -left-3 text-3xl sm:text-4xl text-purple-400">"</div>
+              <p className="text-sm sm:text-base text-gray-300 mb-4">Un vrai professionnel qui sait s'adapter aux besoins. Le site est rapide et le design est superbe.</p>
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold">
+                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-purple-400 to-pink-500 flex items-center justify-center text-white font-bold text-sm sm:text-base">
                   SB
                 </div>
                 <div>
-                  <div className="font-medium">Sophie Bernard</div>
-                  <div className="text-sm text-gray-400">Agence immobilière</div>
+                  <div className="font-medium text-sm sm:text-base">Sophie Bernard</div>
+                  <div className="text-xs sm:text-sm text-gray-400">Agence immobilière</div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-20">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Services complémentaires</h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">Des options supplémentaires pour enrichir votre projet</p>
+        <div className="mt-12 sm:mt-20">
+          <div className="text-center mb-8 sm:mb-12">
+            <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Services complémentaires</h2>
+            <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto">Des options supplémentaires pour enrichir votre projet</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="p-6 rounded-lg bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-colors">
-              <div className="w-12 h-12 rounded-full bg-cyan-400/10 flex items-center justify-center mb-4">
-                <Search className="w-6 h-6 text-cyan-400" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+            <div className="p-4 sm:p-6 rounded-lg bg-gradient-to-b from-cyan-500/10 to-transparent border border-cyan-500/20 hover:border-cyan-500/40 transition-colors">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-cyan-400/10 flex items-center justify-center mb-3 sm:mb-4">
+                <Search className="w-5 h-5 sm:w-6 sm:h-6 text-cyan-400" />
               </div>
-              <h3 className="text-lg font-semibold mb-2">SEO Avancé</h3>
-              <p className="text-sm text-gray-400">Optimisation poussée pour les moteurs de recherche</p>
-              <div className="mt-4 text-cyan-400 font-semibold">+290€</div>
+              <h3 className="text-base sm:text-lg font-semibold mb-2">SEO Avancé</h3>
+              <p className="text-xs sm:text-sm text-gray-400">Optimisation poussée pour les moteurs de recherche</p>
+              <div className="mt-3 sm:mt-4 text-cyan-400 font-medium text-sm">À partir de 290€</div>
             </div>
-
+            
             <div className="p-6 rounded-lg bg-gradient-to-b from-blue-500/10 to-transparent border border-blue-500/20 hover:border-blue-500/40 transition-colors">
               <div className="w-12 h-12 rounded-full bg-blue-400/10 flex items-center justify-center mb-4">
                 <Image className="w-6 h-6 text-blue-400" />
@@ -497,17 +498,6 @@ export default function TarifsPage() {
             </div>
           </div>
         </div>
-
-        {selectedPlanData && (
-          <PricingDetail
-            title={selectedPlanData.title}
-            description={selectedPlanData.description}
-            features={selectedPlanData.features}
-            price={selectedPlanData.price}
-            stripePriceId={selectedPlanData.stripePriceId}
-            onClose={() => setSelectedPlan(null)}
-          />
-        )}
       </div>
     </main>
   );
